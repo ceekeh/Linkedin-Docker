@@ -1,0 +1,22 @@
+
+https://www.linkedin.com/posts/promise-edah-frank-959673159_configure-a-security-context-for-a-pod-or-activity-7200072192368214016-nBjZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAACGOFWwBXBdYtkoJw0nX7bLyQWUEVCBMsEk
+
+𝐰𝐡𝐚𝐭 𝐈 𝐥𝐞𝐚𝐫𝐧𝐞𝐝 𝐮𝐬𝐢𝐧𝐠 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐭𝐡𝐢𝐬 𝐰𝐞𝐞𝐤⬇️ 
+
+Base images often have a created user (e.g., the Node.js image has a user "node" at UID 1000). However, you must set this user yourself using 𝐫𝐮𝐧𝐀𝐬𝐔𝐬𝐞𝐫 at runtime in your deployment or the 𝐔𝐒𝐄𝐑 directive in a Dockerfile. 
+
+However, my 𝐛𝐢𝐠 𝐪𝐮𝐞𝐬𝐭𝐢𝐨𝐧 was: which takes precedence—the user set in the Dockerfile or the one in the container spec? In the process of finding an answer, these are what I learned along the way:
+
+1. When a Dockerfile does not specify a USER
+then your own built image will inherit the USER of the base image.
+
+2. For instance, If you specify a UID of 65534 in a Dockerfile, it does not mean that you must also specify the same UID in the runAsUser section of your manifest.
+
+Back to my big question...
+Here is the answer;
+
+When specifying a user in a Dockerfile using the USER instruction and also setting a runAsUser in the Kubernetes security context, the runAsUser specified in the Kubernetes security context will take precedence over the user specified in the Dockerfile. This is because Kubernetes security settings are enforced at the runtime level and can override the image's default settings for security compliance.
+
+You can learn more https://lnkd.in/eFE-YjKe
+
+https://lnkd.in/eFfaGrSB
